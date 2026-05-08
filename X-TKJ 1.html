@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-TKJ 1 | Ruang Kelas Teknologi Elite</title>
+    
+    <link rel="shortcut icon" href="https://uimedan.ac.id/uploads/setup/Wgv2svxKBHl25JLRy0uHThgY1iae5E0srQ8U2b9x.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 50%, #00d4ff 100%);
+            --secondary-gradient: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            --success-gradient: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a23;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: var(--primary-gradient);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(45deg, #fff, #f0f8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px #fff); }
+            to { filter: drop-shadow(0 0 40px #667eea); }
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 2.5rem;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover .card-icon {
+            transform: scale(1.2) rotate(10deg);
+            filter: drop-shadow(0 0 30px currentColor);
+        }
+
+        /* Button */
+        .btn-back {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-back:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        /* ROSTER SECTION - UPGRADED */
+        .roster-section {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roster-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .roster-title {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            background: linear-gradient(45deg, #fff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .roster-day {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .roster-day::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--secondary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .roster-day:hover::before {
+            transform: scaleX(1);
+        }
+
+        .roster-day:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .day-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .day-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: var(--secondary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-item:hover {
+            padding-left: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+
+        .time-badge {
+            background: var(--success-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0,184,148,0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .roster-grid {
+                grid-template-columns: 1fr;
+            }
+            .roster-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center position-relative">
+        <div class="container">
+            <a href="index.html" class="btn btn-back mb-4 d-inline-block">
+                <i class="fas fa-arrow-left me-2"></i> Kembali
+            </a>
+            <h1 class="hero-title">X-TKJ 1</h1>
+            <p class="lead fs-4 opacity-90">
+                <i class="fas fa-rocket me-2"></i>Generasi Hebat, Ahli Teknologi Masa Depan
+            </p>
+        </div>
+    </section>
+
+    <!-- Cards Section (SAME AS BEFORE) -->
+    <div class="container my-5">
+        <div class="row g-4">
+            <!-- Visi, Wali Kelas, Siswa cards - SAME AS BEFORE -->
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card h-100 text-white text-center">
+                    <i class="fas fa-lightbulb card-icon text-warning"></i>
+                    <h3 class="h2 fw-bold mb-3">Visi Kelas</h3>
+                    <p class="opacity-90">Menguasai teknologi, menciptakan masa depan!</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card h-100 text-white text-center">
+                    <i class="fas fa-user-tie card-icon text-primary"></i>
+                    <h3 class="h2 fw-bold mb-4">Wali Kelas</h3>
+                    <h4 class="fw-bold">Roji, S.T.</h4>
+                    <p class="opacity-75">Guru Pembimbing Terbaik</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="glass-card h-100 text-white text-center">
+                    <i class="fas fa-users card-icon text-success"></i>
+                    <h3 class="h2 fw-bold mb-4">Siswa Elite</h3>
+                    <div class="display-1 fw-bold text-white mb-3">39</div>
+                    <p class="lead opacity-90">Siswa Kreatif & Inovatif</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROSTER LENGKAP SENIN - JUMAT -->
+    <section class="roster-section mx-4 mx-md-0">
+        <div class="container">
+            <h2 class="roster-title text-center mb-5">
+                <i class="fas fa-calendar-alt me-3"></i>
+                Jadwal Roster Pelajaran X-TKJ 1
+            </h2>
+            
+            <div class="roster-grid">
+                <!-- SENIN -->
+                <div class="roster-day">
+                    <div class="day-name">
+                        <div class="day-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        Senin
+                    </div>
+                    <div class="schedule-item">
+                        <div>
+                            <h5 class="mb-0 fw-bold">Teknik Komputer</h5>
+                            <small class="text-muted">Pak Roji</small>
+                        </div>
+                        <div class="time-badge">08:00 - 10:00</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div>
+                            <h5 class="mb-0 fw-bold">Matematika</h5>
+                            <small class="text-muted">Bu Siti</small>
+                        </div>
+                        <div class="time-badge">10:30 - 12:00</div>
+                    </div>
+                </div>
+
+                <!-- SELASA -->
+                <div class="roster-day">
+                    <div class="day-name">
+                        <div class="day-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        Selasa
+                    </div>
+                    <div class="schedule-item">
+                        <div>
+                            <h5 class="mb-0 fw-bold">Praktikum Hardware</h5>
+                            <small class="text-muted">Pak Roji</small>
+                        </div>
+                        <div class="time-badge">08:00 - 10:00</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div>
+                            <h5 class="mb-0 fw-bold">Bahasa Inggris</h5>
+                            <small class="text-muted">Bu Rina</small>
+                        </div>
+                        <div class="time-badge">10:30 - 12:00</div>
+                    </div>
+                </div>
+
+                <!-- RABU -->
+                <div class="roster-day">
+                    <div class="day-name">
+                        <div class="day-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        Rabu
+                    </div>
+                    <div class="schedule-item">
+                        <div>
+                            <h5 class="mb-0 fw-bold">Jaringan Dasar</h5>
+                            <small class="text-muted">Pak Roji</small>
+                        </div>
+                        <div class="time-badge">08:00 - 10:00</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div>
+                            <h5 class="mb-0 fw-bold">Fisika</h5>
+                            <small class="text-muted">Pak Budi</small>
+                        </div>
+                        <div class="time-badge">10:30 - 12:00</div>
+                    </div>
+                </div>
+
+                <!-- KAMIS -->
+                <div class="roster-day">
+                    <div class="day-name">
+                        <div class="day-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        Kamis
+                    </div>
+                    <div class="schedule-item">
+                        <div>
+                            <h5 class="mb-0 fw-bold">Sistem Operasi</h5>
+                            <small class="text-muted">Pak Roji</small>
+                        </div>
+                        <div class="time-badge">08:00 - 10:00</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div>
+                            <h5 class="mb-0 fw-bold">PPKn</h5>
+                            <small class="text-muted">Bu Sari</small>
+                        </div>
+                        <div class="time-badge">10:30 - 12:00</div>
+                    </div>
+                </div>
+
+                <!-- JUMAT -->
+                <div class="roster-day">
+                    <div class="day-name">
+                        <div class="day-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        Jumat
+                    </div>
+                    <div class="schedule-item">
+                        <div>
+                            <h5 class="mb-0 fw-bold">Praktikum Software</h5>
+                            <small class="text-muted">Pak Roji</small>
+                        </div>
+                        <div class="time-badge">08:00 - 10:00</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div>
+                            <h5 class="mb-0 fw-bold">Agama</h5>
+                            <small class="text-muted">Pak Ustadz</small>
+                        </div>
+                        <div class="time-badge">10:30 - 12:00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Particle System
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = (Math.random() * 6 + 2) + 'px';
+                particle.style.animationDuration = (Math.random() * 20 + 15) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+        });
+
+        // Roster Day Click Effect
+        document.querySelectorAll('.roster-day').forEach(day => {
+            day.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
+                // Add ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255,255,255,0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '60px';
+                ripple.style.height = '60px';
+                ripple.style.marginLeft = '-30px';
+                ripple.style.marginTop = '-30px';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add CSS for ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

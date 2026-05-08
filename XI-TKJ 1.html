@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://uimedan.ac.id/uploads/setup/Wgv2svxKBHl25JLRy0uHThgY1iae5E0srQ8U2b9x.png">
+    <title>XI-TKJ 1 | Ruang Kelas Teknologi Elite</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --hacker-green: #00ff41;
+            --primary-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            --secondary-gradient: linear-gradient(135deg, #00d4ff, #0099cc);
+            --success-gradient: linear-gradient(135deg, #00d4ff, #0099ff);
+            --matrix-green: #00ff41;
+            --nav-bg: rgba(12, 12, 28, 0.95);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR HACKER TERMINAL */
+        .navbar-hacker {
+            background: var(--nav-bg) !important;
+            backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 255, 65, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--hacker-green), #00d4ff, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
+            animation: glitchText 2s infinite;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 25px;
+            margin: 0 0.25rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,255,65,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .nav-link:hover {
+            color: #fff !important;
+            background: rgba(0, 255, 65, 0.15) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.4);
+            text-shadow: 0 0 15px var(--hacker-green);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--hacker-green), #00d4ff) !important;
+            color: #fff !important;
+            box-shadow: 0 5px 20px rgba(0, 255, 65, 0.5);
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .navbar-toggler {
+            border: 2px solid var(--hacker-green);
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 255, 65, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* HACKER TERMINAL BACKGROUND */
+        .hacker-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .matrix-rain {
+            position: absolute;
+            font-family: 'Orbitron', monospace;
+            font-size: 18px;
+            color: var(--matrix-green);
+            opacity: 0.7;
+            animation: matrixRain 15s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes matrixRain {
+            0% { transform: translateY(-100vh) translateX(0); }
+            100% { transform: translateY(100vh) translateX(10px); }
+        }
+
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--hacker-green), transparent);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .glitch {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0,255,65,0.03) 2px,
+                rgba(0,255,65,0.03) 4px
+            );
+            pointer-events: none;
+            z-index: -1;
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            10% { transform: translate(-2px, 2px); }
+            20% { transform: translate(2px, -2px); }
+            30% { transform: translate(-1px, 1px); }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: var(--primary-gradient);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            margin-top: 0 !important;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, #fff, var(--hacker-green), #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0,255,65,0.8);
+            animation: glitchText 3s infinite;
+        }
+
+        @keyframes glitchText {
+            0%, 100% { transform: translate(0); }
+            10% { transform: translate(-3px, 3px); }
+            20% { transform: translate(3px, -3px); }
+        }
+
+        .btn-back {
+            background: rgba(255,255,255,0.15) !important;
+            backdrop-filter: blur(10px);
+            color: white !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            border-radius: 50px !important;
+            padding: 15px 30px !important;
+            font-weight: 600 !important;
+            text-decoration: none !important;
+            transition: all 0.4s ease !important;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .btn-back:hover {
+            background: rgba(255,255,255,0.25) !important;
+            transform: translateX(-5px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(0, 255, 65, 0.1);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            border-radius: 25px;
+            padding: 3rem;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,255,65,0.2);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,255,65,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-25px) scale(1.05);
+            border-color: var(--hacker-green);
+            box-shadow: 0 40px 80px rgba(0,255,65,0.4);
+        }
+
+        .card-icon {
+            filter: drop-shadow(0 0 20px currentColor);
+        }
+
+        /* Roster Section */
+        .roster-section {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roster-title {
+            color: #ffffff !important;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.8) !important;
+            font-size: 2.8rem !important;
+            font-weight: 800;
+            background: linear-gradient(45deg, #fff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .roster-day {
+            background: rgba(255, 255, 255, 0.15) !important;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4) !important;
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .roster-day::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--secondary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .roster-day:hover::before {
+            transform: scaleX(1);
+        }
+
+        .roster-day:hover {
+            background: rgba(255, 255, 255, 0.25) !important;
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 212, 255, 0.4) !important;
+            border-color: rgba(255,255,255,0.6) !important;
+        }
+
+        .day-name {
+            color: #ffffff !important;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .day-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: var(--secondary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(0,212,255,0.4);
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-item h5 {
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+        }
+
+        .schedule-item h5::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #ffffff);
+            transition: width 0.3s ease;
+        }
+
+        .schedule-item:hover h5::after {
+            width: 100%;
+        }
+
+        .schedule-item small {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+        }
+
+        .schedule-item:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            border-radius: 15px !important;
+            padding-left: 1.5rem !important;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3) !important;
+        }
+
+        .time-badge {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%) !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5) !important;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .typing {
+            overflow: hidden;
+            border-right: 3px solid var(--hacker-green);
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--hacker-green) }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .matrix-rain { font-size: 14px; }
+            .roster-grid { grid-template-columns: 1fr; }
+            .hero-section { padding: 80px 0 60px; }
+            .roster-section { margin: 2rem 0; padding: 2rem; }
+            .navbar-brand { font-size: 1.5rem; }
+        }
+
+        @media (max-width: 576px) {
+            .roster-title { font-size: 2rem !important; }
+            .hero-title { font-size: 2.5rem; }
+            .nav-link { padding: 0.5rem 1rem !important; margin: 0 0.1rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR HACKER TERMINAL -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-hacker">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-microchip me-2"></i>TKJ ELITE
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">
+                            <i class="fas fa-home me-1"></i> Beranda
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-users me-1"></i> XI TKJ 1
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="TENTANGXI.html">
+                            <i class="fas fa-info-circle me-1"></i> Tentang
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Galery,XI-TKJ.html">
+                            <i class="fas fa-images me-1"></i> Galeri
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HACKER TERMINAL BACKGROUND -->
+    <div class="hacker-bg">
+        <div class="glitch"></div>
+        <div class="scanline"></div>
+        <div id="matrix-container"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center position-relative">
+        <div class="container">
+            <a href="index.html" class="btn btn-back mb-4 d-inline-block">
+                <i class="fas fa-arrow-left me-2"></i> Kembali
+            </a>
+            <h1 class="hero-title mb-4">XI-TKJ 1</h1>
+            <p class="lead fs-4 opacity-90 typing" style="font-family: 'Orbitron', monospace; font-size: 1.5rem;">
+                Generasi Hebat, Ahli Teknologi Masa Depan
+            </p>
+        </div>
+    </section>
+
+    <!-- Info Cards Section -->
+    <div class="container my-5">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card h-100 text-white text-center">
+                    <i class="fas fa-lightbulb card-icon mb-3" style="font-size: 5rem; color: var(--hacker-green);"></i>
+                    <h3 class="h2 fw-bold mb-3" style="color: var(--hacker-green);">Visi Kelas</h3>
+                    <p class="opacity-90">Menguasai teknologi, menciptakan masa depan!</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="glass-card h-100 text-white text-center">
+                    <i class="fas fa-user-tie card-icon mb-3" style="font-size: 5rem; color: #ff00ff;"></i>
+                    <h3 class="h2 fw-bold mb-3" style="color: #ff00ff;">Wali Kelas</h3>
+                    <h4 class="fw-bold mb-2" style="color: var(--hacker-green);">Erfina Karamoy, S.T.</h4>
+                    <p class="opacity-75">Guru TKJ</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="glass-card h-100 text-white text-center">
+                    <i class="fas fa-users card-icon mb-3" style="font-size: 5rem; color: #00ffff;"></i>
+                    <h3 class="h2 fw-bold mb-4" style="color: #00ffff;">Siswa Elite</h3>
+                    <div class="display-1 fw-bold mb-3" style="color: var(--hacker-green);">39</div>
+                    <p class="lead opacity-90">Siswa Kreatif & Inovatif</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Roster Section -->
+    <section class="roster-section mx-4 mx-md-0">
+        <div class="container">
+            <h2 class="roster-title text-center mb-5">
+                <i class="fas fa-calendar-alt me-3"></i>
+                Jadwal Roster Pelajaran XI-TKJ 1
+            </h2>
+            
+            <div class="roster-grid">
+                <!-- SENIN -->
+                <div class="roster-day">
+                    <div class="day-name">
+                        <div class="day-icon"><i class="fas fa-calendar-day"></i></div>
+                        Senin
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">TKJN</h5><small>Pak Nurli</small></div>
+                        <div class="time-badge">07:30 - 09:00</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">Mapel Pilihan</h5><small>Bu Suwitri</small></div>
+                        <div class="time-badge">09:15 - 10:45</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">PPJ</h5><small>Bu Erfina</small></div>
+                        <div class="time-badge">11:00 - 12:30</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">ASJ</h5><small>Bu Erfina</small></div>
+                        <div class="time-badge">13:00 - 14:30</div>
+                    </div>
+                </div>
+
+                <!-- SELASA -->
+                <div class="roster-day">
+                    <div class="day-name">
+                        <div class="day-icon"><i class="fas fa-calendar-day"></i></div>
+                        Selasa
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">B. Inggris</h5><small>Bu aswina</small></div>
+                        <div class="time-badge">07:30 - 09:00</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">PKK</h5><small>Bu Suwitri</small></div>
+                        <div class="time-badge">09:15 - 10:45</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">Matematika</h5><small>Bu nissa</small></div>
+                        <div class="time-badge">11:00 - 12:30</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">Mulok</h5><small>Bu malinar</small></div>
+                        <div class="time-badge">13:00 - 14:30</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">ASJ</h5><small>bu Erfina</small></div>
+                        <div class="time-badge">14:45 - 16:15</div>
+                    </div>
+                </div>
+
+                <!-- RABU -->
+                <div class="roster-day">
+                    <div class="day-name">
+                        <div class="day-icon"><i class="fas fa-calendar-day"></i></div>
+                        Rabu
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">B. Inggris</h5><small>Bu aswina</small></div>
+                        <div class="time-badge">07:30 - 09:00</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">B. Indonesia</h5><small>pak yudha</small></div>
+                        <div class="time-badge">09:15 - 10:45</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">PKK</h5><small>Bu Suwitri</small></div>
+                        <div class="time-badge">11:00 - 12:30</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">ASJ</h5><small>bu Erfina</small></div>
+                        <div class="time-badge">13:00 - 14:30</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">KJ</h5><small>Buk Erfina</small></div>
+                        <div class="time-badge">14:45 - 16:15</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">AGAMA</h5><small>Pak daud</small></div>
+                        <div class="time-badge">16:30 - 17:30</div>
+                    </div>
+                </div>
+
+                <!-- KAMIS -->
+                <div class="roster-day">
+                    <div class="day-name">
+                        <div class="day-icon"><i class="fas fa-calendar-day"></i></div>
+                        Kamis
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">B. Indonesia</h5><small>pak yudha</small></div>
+                        <div class="time-badge">07:30 - 09:00</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">KJ</h5><small>Buk Erfina</small></div>
+                        <div class="time-badge">09:15 - 10:45</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">Sejarah</h5><small>Buk Yulfah</small></div>
+                        <div class="time-badge">11:00 - 12:30</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">PJOK</h5><small>Pak jamil</small></div>
+                        <div class="time-badge">13:00 - 14:30</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">KJ</h5><small>Buk Erfina</small></div>
+                        <div class="time-badge">14:45 - 16:15</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">Matematika</h5><small>Bu nissa</small></div>
+                        <div class="time-badge">16:30 - 17:30</div>
+                    </div>
+                </div>
+
+                <!-- JUMAT -->
+                <div class="roster-day">
+                    <div class="day-name">
+                        <div class="day-icon"><i class="fas fa-calendar-day"></i></div>
+                        Jumat
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">PKN</h5><small>Bu nurjanah</small></div>
+                        <div class="time-badge">07:30 - 09:00</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div><h5 class="mb-0 fw-bold">TKJN</h5><small>Pak Nurli</small></div>
+                        <div class="time-badge">09:15 - 10:45</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Matrix Rain Effect
+        function createMatrixRain() {
+            const container = document.getElementById('matrix-container');
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            
+            for (let i = 0; i < 50; i++) {
+                const rain = document.createElement('div');
+                rain.className = 'matrix-rain';
+                rain.style.left = Math.random() * 100 + '%';
+                rain.style.animationDuration = (Math.random() * 5 + 10) + 's';
+                rain.style.animationDelay = Math.random() * 5 + 's';
+                rain.innerHTML = chars.split('').slice(0, Math.floor(Math.random() * 20 + 10)).join('');
+                container.appendChild(rain);
+            }
+        }
+
+        // Navbar Active State
+        document.addEventListener('DOMContentLoaded', function() {
+            createMatrixRain();
+            
+            // Set active nav link based on current page
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
